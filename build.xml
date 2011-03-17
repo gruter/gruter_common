@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+
+<project name="gruter-common" default="jar" basedir=".">
+  <description>
+    gruter-common copyright www.gruter.com
+  </description>
+  
+  <!-- Load all the default properties, and any the user wants    -->
+  <!-- to contribute (without having to type -D or edit this file -->
+  <property file="${basedir}/build.properties" />
+ 
+  <property name="Name" value="gruter-common"/>
+  <property name="name" value="gruter-common"/>
+  <property name="version" value="0.9.0"/>
+  <property name="final.name" value="${name}-${version}"/>
+  <property name="year" value="2011"/>
+
+  <property name="src" value="${basedir}/src"/>
+  <property name="src.dir" value="${src}/java"/>
+  <property name="src.test" value="${src}/test"/>
+  <property name="lib.dir" value="${basedir}/lib"/>
+  <property name="conf.dir" value="${basedir}/conf"/>
+  <property name="docs.dir" value="${basedir}/docs"/>
+
+  <property name="build.dir" value="${basedir}/build"/>
+  <property name="build.test" value="${build.dir}/test"/>
+  <property name="build.classes" value="${build.dir}/classes"/>
+  <property name="build.src" value="${build.dir}/src"/>
+  <property name="build.docs" value="${build.dir}/docs"/>
+  <property name="build.encoding" value="UTF-8"/>
+
+  <property name="deploy.dir" value="${basedir}/build"/>
+
+  <property name="dist.dir" value="${build.dir}/${final.name}"/>
+
+  <property name="javac.debug" value="yes"/>
+  <property name="javac.optimize" value="yes"/>
+  <property name="javac.deprecation" value="off"/>
+  <property name="javac.version" value="1.6"/>
+
+  <!-- the normal classpath -->
+  <path id="classpath">
+    <pathelement location="${build.classes}"/>
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar" />
+    </fileset>
+    <pathelement location="${conf.dir}"/>
+  </path>
+
+  <taskdef classname="org.apache.jasper.JspC" name="jsp-compile" >
+    <classpath refid="classpath"/>
+  </taskdef>
+
+  <!-- ====================================================== -->
+  <!-- Stuff needed by all targets                            -->
+  <!-- ====================================================== -->
+  <target name="init">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.classes}"/>
+    <mkdir dir="${build.src}"/>
+    <mkdir dir="${build.test}"/>
+  </target>
+  
+  <!-- ====================================================== -->
+  <!-- Compile the Java files                                 -->
+  <!-- ====================================================== -->
+  <target name="compile-core" depends="init">
+    <javac 
+      encoding="${build.encoding}" 
+      srcdir="${src.dir};${build.src}"
+      includes="com/**/*.java"
+      destdir="${build.classes}"
+      debug="true"
+      optimize="${javac.optimize}"
+      target="${javac.version}"
+      source="${javac.version}"
+      deprecation="${javac.deprecation}">
+      <classpath refid="classpath"/>
+    </javac>    
+  </target>
+
+  <target name="compile" depends="compile-core">
+  </target>
+
+  <!-- ================================================================== -->
+  <!-- Compile test code                                                  --> 
+  <!-- ================================================================== -->
+  <target name="compile-test" depends="compile-core"> 
+    <echo message="compile gaia unit test cases"/> 
+    <javac 
+      encoding="${build.encoding}" 
+      srcdir="${src.test}"
+      destdir="${build.test}" 
+      debug="true"> 
+      <classpath refid="test.classpath"/> 
+    </javac>
+      
+    <jar jarfile="${build.dir}/${name}-${version}-test.jar" >
+      <fileset dir="${build.test}" includes="com/gruter/**" />
+      <fileset dir="${build.test}" includes="**/*.xml" />
+    </jar>
+  </target>
+
+  <!-- ================================================================== -->
+  <!-- Make jar                                                           -->
+  <!-- ================================================================== -->
+  <!--                                                                    -->
+  <!-- ================================================================== -->
+  <target name="jar" depends="compile-core">
+    <jar jarfile="${build.dir}/${final.name}-core.jar" basedir="${build.classes}">
+      <fileset file="${src.dir}/gruter-common-default.xml"/>
+    </jar>
+  </target>
+
+  <!-- ================================================================== -->
+  <!-- Clean.  Delete the build files, and their directories              -->
+  <!-- ================================================================== -->
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+  </target>
+</project>

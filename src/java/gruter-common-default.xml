@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<configuration>
+  <property>
+    <name>zk.servers</name>
+    <value>127.0.0.1:2181</value>
+    <description></description>
+  </property>
+  
+  <property>
+    <name>zk.sesion.timeout</name>
+    <value>30000</value>
+    <description>ms</description>
+  </property> 
+  
+  <property>
+    <name>zk.service.root</name>
+    <value>/gruter/root</value>
+    <description></description>
+  </property>
+
+  <property>
+    <name>appserver.worker.num</name>
+    <value>100</value>
+    <description></description>
+  </property>  
+  <property>
+    <name>gruter.local.temp</name>
+    <value>/tmp/gruter</value>
+    <description></description>
+  </property> 
+</configuration>  
