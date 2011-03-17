@@ -2,3 +2,5 @@ gruter common module
  - ZooKeeper based cluster membership
  - Thrift based Application
  - Configuration
+
+License: Apache License Version 2.0
