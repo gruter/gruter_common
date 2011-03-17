@@ -1,1 +1,4 @@
-cloud platform monitoring
+gruter common module
+ - ZooKeeper based cluster membership
+ - Thrift based Application
+ - Configuration
