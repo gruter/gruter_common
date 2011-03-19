@@ -20,7 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 /**
  * @author Daegeun Kim
  */
-public class CommonHttpServerTestCase implements FilterContainer {
+public abstract class CommonHttpServerTestCase implements FilterContainer {
 	private static final String DEFAULT_WEB_CONTEXT_PATH = "default_context_path";
 	private static final String DEFAULT_HOSTNAME = "127.0.0.1";
 	private static final int DEFAULT_PORT = 8100;
