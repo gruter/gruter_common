@@ -179,14 +179,14 @@ public abstract class CommonHttpServerTestCase implements FilterContainer {
 	/**
 	 * HtmlUnit 의 Page class 를 코드변경없이 사용하고자 동일한 이름의 클래스로 필요한 것만 작성
 	 */
-	static class Page {
+	protected static class Page {
 		WebResponse response;
 		
 		Page(WebResponse response) {
 			this.response = response;
 		}
 		
-		WebResponse getWebResponse() {
+		public WebResponse getWebResponse() {
 			return response;
 		}
 	}
@@ -194,7 +194,7 @@ public abstract class CommonHttpServerTestCase implements FilterContainer {
 	/**
 	 * HtmlUnit 의 WebResponse class 를 코드변경없이 사용하고자 동일한 이름의 클래스로 필요한 것만 작성
 	 */
-	static class WebResponse {
+	protected static class WebResponse {
 		HttpResponse response;
 		
 		WebResponse(HttpResponse response) {

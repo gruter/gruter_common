@@ -63,19 +63,6 @@ public class TestCommonHttpServer extends CommonHttpServerTestCase {
 	}
 	
 	@Test
-	public void testZookeeperServlet() throws Exception {
-		ZooKeeperLocalServer zkserver = new ZooKeeperLocalServer();
-		zkserver.run(21333);
-		
-		addServlet("zk-servlet", "/zookeeper", ZKControllerServlet.class);
-		Page page = requestToServer("GET", "/zookeeper?action=GetZKNodeDetail&zkservers=127.0.0.1%3A21333&dir=%2F");
-
-		zkserver.shutdown();
-		Assert.assertThat(200, is(page.getWebResponse().getStatusCode()));
-		//TODO: 임의의 znode 와 data 를 추가하고 넘겨받은 json 결과와 data 비교 검증 필요.
-	}
-	
-	@Test
 	public void testFilter() throws Exception {
 		addFilter("test-filter", TestFilter.class.getName(), null);
 		Page page = requestToServer("GET", "/zktree.html");
