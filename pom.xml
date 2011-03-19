@@ -22,7 +22,7 @@
 			<organization>gruter</organization>
 		</developer>
 	</developers>
-	
+
 	<build>
 		<directory>build</directory>
 		<sourceDirectory>src/java</sourceDirectory>
@@ -57,11 +57,14 @@
 	</build>
 
 	<dependencies>
+		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
+		<!-- /test -->
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
@@ -130,6 +133,7 @@
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-common</artifactId>
 			<version>${hadoop.version}</version>
+			<optional>true</optional>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/hadoop-common-${hadoop.version}.jar</systemPath>
 		</dependency>
@@ -137,6 +141,7 @@
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-hdfs</artifactId>
 			<version>${hadoop.version}</version>
+			<optional>true</optional>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/hadoop-hdfs-${hadoop.version}.jar</systemPath>
 		</dependency>
@@ -144,6 +149,7 @@
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapred</artifactId>
 			<version>${hadoop.version}</version>
+			<optional>true</optional>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/hadoop-mapred-${hadoop.version}.jar</systemPath>
 		</dependency>
@@ -151,6 +157,7 @@
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapred-tools</artifactId>
 			<version>${hadoop.version}</version>
+			<optional>true</optional>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/hadoop-mapred-tools-${hadoop.version}.jar</systemPath>
 		</dependency>
