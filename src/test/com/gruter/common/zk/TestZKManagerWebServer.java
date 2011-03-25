@@ -14,6 +14,10 @@ import com.gruter.common.http.ZKControllerServlet;
  * @author Daegeun Kim
  */
 public class TestZKManagerWebServer extends CommonHttpServerTestCase {
+        public TestZKManagerWebServer() {
+                super("common_webapps");
+        }
+
 	@Before
 	public void before() throws Exception {
 		initServer();
